@@ -1,13 +1,15 @@
 package dwes.maven.dao.interfaces;
 
-import dwes.maven.dao.mysql.ArrayList;
-import dwes.maven.dao.mysql.cliente;
+import java.util.ArrayList;
+
+
+import dwes.maven.entidades.Cliente;
 
 public interface ClienteDAOInterfaz {
 
-	int insert(cliente c);
-	int update(cliente c);
-	int delete(String dni);
-	ArrayList<cliente> findall();
-	cliente findByDni(String dni);
+	void insert(Cliente c);
+	void update(Cliente c);
+	void delete(String dni);
+	ArrayList<Cliente> findall();
+	Cliente findByDni(String dni);
 }
