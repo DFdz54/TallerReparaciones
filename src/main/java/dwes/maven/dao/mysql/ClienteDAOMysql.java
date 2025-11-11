@@ -23,13 +23,13 @@ public class ClienteDAOMysql implements ClienteDAOInterfaz {
 	public void insert(Cliente c) {
 		try {
 			// PreparedStatement
-			String sql = "INSERT INTO persona (id, nombre, edad, numTelefono, email) VALUES(?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO cliente (idCliente, nombre, email, dni, telefono) VALUES(?, ?, ?, ?, ?);";
 			PreparedStatement pst = conexion.prepareStatement(sql);
-			pst.setInt(1, 1); // posicion 1, valor 1
-			pst.setString(2, "Dario");
-			pst.setInt(3, 22);
-			pst.setString(4, "123456789");
-			pst.setString(5, "dario.f.mar@gmail.com");
+			pst.setInt(1, c.getId_cliente()); // posicion 1, valor 1
+			pst.setString(2, c.getNombre());
+			pst.setString(3, c.getEmail());
+			pst.setString(4, c.getDni());
+			pst.setString(5, c.getTelefono());
 
 			int resul = pst.executeUpdate();
 			System.out.println("resultado de inserccion:" + resul);
@@ -44,7 +44,7 @@ public class ClienteDAOMysql implements ClienteDAOInterfaz {
 		try {
 			ResultSet resultado = null;
 			conexion.setAutoCommit(false);
-			String sql = "SELECT id, nombre, edad, numTelefono FROM persona WHERE edad > ?";
+			String sql = "SELECT idCliente, nombre, email, dni FROM cliente WHERE email > ?";
 			PreparedStatement pst = conexion.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, // Sensible a
 																									// cambios
 					ResultSet.CONCUR_UPDATABLE); // Permite modificar
@@ -54,11 +54,11 @@ public class ClienteDAOMysql implements ClienteDAOInterfaz {
 
 			while (resultado.next()) {
 				String nombre = resultado.getString("nombre");
-				int edadActual = resultado.getInt("edad");
-				resultado.updateInt("edad", edadActual + 5);
+				String newemail = resultado.getString("email");
+				resultado.updateString("email", newemail + "XxX");
 				resultado.updateRow();
 				System.out
-						.println("> La edad de la persona " + nombre + " se modificado a " + resultado.getInt("edad"));
+						.println("> La email de la persona " + nombre + " se modificado a " + resultado.getString("email"));
 			}
 
 			conexion.commit();
@@ -90,7 +90,7 @@ public class ClienteDAOMysql implements ClienteDAOInterfaz {
 
 	@Override
 	public void delete(String dni) {
-		String sqlDelete = "DELETE FROM Persona WHERE id = ?;";
+		String sqlDelete = "DELETE FROM cliente WHERE idCliente = ?;";
 		try {
 			PreparedStatement pst = conexion.prepareStatement(sqlDelete);
 			pst.setInt(1, 1); // borrar id
