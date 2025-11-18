@@ -11,22 +11,26 @@ import dwes.maven.dao.mysql.VehiculoDAOMysql;
 
 public class MysqlDAOFactory implements DAOFactory {
 
-	public static ClienteDAOInterfaz getClienteDAOInterfaz() {
+	@Override
+	public ClienteDAOInterfaz getClienteDAOInterfaz() {			
 
 		return new ClienteDAOMysql();
 	}
 
-	public static VehiculoDAOInterfaz getVehiculoDAOInterfaz() {
+	@Override	
+	public VehiculoDAOInterfaz getVehiculoDAOInterfaz() {
 
 		return new VehiculoDAOMysql();
 	}
 
-	public static ReparacionDAOInterfaz getReparacionDAOInterfaz() {
+	@Override		
+	public ReparacionDAOInterfaz getReparacionDAOInterfaz() {
 
 		return new ReparacionDAOMysql();
 	}
 
-	public static UsuarioDAOInterfaz getUsuarioDAOInterfaz() {
+	@Override		
+	public UsuarioDAOInterfaz getUsuarioDAOInterfaz() {
 
 		return new UsuarioDAOMysql();
 	}

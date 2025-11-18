@@ -28,8 +28,7 @@ private Connection conexion;
 			PreparedStatement pst = conexion.prepareStatement(sql);
 			pst.setInt(1, r.getId_reparacion()); // posicion 1, valor 1
 			pst.setString(2, r.getDescripcion());
-			LocalDate fechaHoy = LocalDate.now();
-			pst.setDate(3, java.sql.Date.valueOf(fechaHoy));
+			pst.setDate(3, java.sql.Date.valueOf(r.getFechaEntrada()));
 			pst.setDouble(4, r.getCosteEstimado());
 			pst.setString(5, r.getEstado());
 			pst.setInt(6, r.getVehiculoId());

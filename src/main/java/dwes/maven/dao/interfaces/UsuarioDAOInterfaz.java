@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import dwes.maven.entidades.Usuario;
 
-public interface UsuarioDAOInterfaz {
+public interface UsuarioDAOInterfaz  {
 
 	void insert(Usuario u);
-	void update(Usuario u);
-	void delete(String dni);
+	void login(Usuario u, String dni, String password);
+	ArrayList <Usuario> ListaUsuarios = new ArrayList<Usuario>();
 	ArrayList<Usuario> findall();
 	Usuario findByDni(String dni);
 }

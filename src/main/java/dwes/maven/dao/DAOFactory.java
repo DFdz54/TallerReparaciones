@@ -7,25 +7,10 @@ import dwes.maven.dao.interfaces.VehiculoDAOInterfaz;
 
 public interface DAOFactory {
 
-	public static ClienteDAOInterfaz getClienteDAOInterfaz() {
-
-		return null;
-	}
-
-	public static VehiculoDAOInterfaz getVehiculoDAOInterfaz() {
-
-		return null;
-	}
-
-	public static ReparacionDAOInterfaz getReparacionDAOInterfaz() {
-
-		return null;
-	}
-
-	public static UsuarioDAOInterfaz getUsuarioDAOInterfaz() {
-
-		return null;
-	}
+	public  ClienteDAOInterfaz getClienteDAOInterfaz();
+	public  VehiculoDAOInterfaz getVehiculoDAOInterfaz();
+	public  ReparacionDAOInterfaz getReparacionDAOInterfaz();
+	public  UsuarioDAOInterfaz getUsuarioDAOInterfaz();
 
 	
 	

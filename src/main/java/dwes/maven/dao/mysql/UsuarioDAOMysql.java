@@ -5,13 +5,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import dwes.maven.dao.DBConnection;
+import dwes.maven.dao.MysqlDAOFactory;
 import dwes.maven.dao.interfaces.UsuarioDAOInterfaz;
+import dwes.maven.entidades.Reparaciones;
 import dwes.maven.entidades.Usuario;
+import dwes.maven.mysql.PasswordUtils;
 
 public class UsuarioDAOMysql implements UsuarioDAOInterfaz {
 
+	Scanner escaner = new Scanner (System.in);
+	Scanner escaner2 = new Scanner (System.in);
+    int opcion1;
+	String opcion2;
+    
+    
 	private Connection conexion;
 
 	public UsuarioDAOMysql() {
@@ -30,80 +40,14 @@ public class UsuarioDAOMysql implements UsuarioDAOInterfaz {
 			pst.setString(4, u.getRol());
 			pst.setString(5, u.getDni());
 
+			pst.setString(6, PasswordUtils.hashPassword(u.getPassword()));
+
 			int resul = pst.executeUpdate();
 			System.out.println("resultado de inserccion:" + resul);
 		} catch (SQLException e) {
 			System.out.println("> NOK:" + e.getMessage());
 		}
 
-	}
-
-	@Override
-	public void update(Usuario u) {
-		try {
-			ResultSet resultado = null;
-			conexion.setAutoCommit(false);
-			String sql = "SELECT id, nombre, password, rol FROM persona WHERE password > ?";
-			PreparedStatement pst = conexion.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, // Sensible a
-																									// cambios
-					ResultSet.CONCUR_UPDATABLE); // Permite modificar
-
-			pst.setInt(1, 15);
-			resultado = pst.executeQuery();
-
-			while (resultado.next()) {
-				String nombre = resultado.getString("nombre");
-				String nuevapass = resultado.getString("password");
-				resultado.updateString("password", nuevapass + "xxx");
-				resultado.updateRow();
-				System.out
-						.println("> La contraseña de " + nombre + " se modificado a " + resultado.getString("password"));
-			}
-
-			conexion.commit();
-			System.out.println("> Cambios confirmados correctamente");
-
-		} catch (SQLException e) {
-			if (conexion != null) {
-				try {
-					conexion.rollback();
-					System.out.println("> Cambios confirmados correctamente");
-				} catch (SQLException e1) {
-					System.out.println("> NOK:" + e.getMessage());
-				}
-
-			}
-		} finally {
-			if (conexion != null) {
-				try {
-					conexion.setAutoCommit(true);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
-
-	@Override
-	public void delete(String dni) {
-		String sqlDelete = "DELETE FROM Persona WHERE id = ?;";
-		try {
-			PreparedStatement pst = conexion.prepareStatement(sqlDelete);
-			pst.setInt(1, 1); // borrar id
-			int filas = pst.executeUpdate();
-
-			if (filas > 0) {
-				System.out.println("> OK. Persona con id 1 eliminada correctamente.");
-			} else {
-				System.out.println("> NOK. Persona con id 1 no se encuentra en la base de datos.");
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -116,6 +60,100 @@ public class UsuarioDAOMysql implements UsuarioDAOInterfaz {
 	public Usuario findByDni(String dni) {
 		// TODO Auto-generated method stub
 		return null;
+
+	}
+	
+	
+	public void verReparacionesFinalizadas() {
+		try {
+			String sql = "SELECT idReparacion, descripcion, fechaEntrada, costeEstimado, estado, vehiculoId, usuarioId FROM reparacion WHERE estado = ?;";
+			PreparedStatement pst = conexion.prepareStatement(sql);
+			pst.setString(1, "Finalizada");
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("idReparacion");
+				String desc = rs.getString("descripcion");
+				java.sql.Date fechaEntrada = rs.getDate("fechaEntrada");
+				double coste = rs.getDouble("costeEstimado");
+				int vehiculoId = rs.getInt("vehiculoId");
+				int usuarioId = rs.getInt("usuarioId");
+				System.out.println("ID: " + id + " | Descripcion: " + desc + " | Fecha Entrada: " + fechaEntrada + " | Coste: " + coste + " | VehiculoId: " + vehiculoId + " | UsuarioId: " + usuarioId);
+			}
+		} catch (SQLException e) {
+			System.out.println("> NOK:" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void login(Usuario u, String dni, String password) {
+
+		
+		
+		if (u.getDni().equals(dni) && PasswordUtils.verifyPassword(password, u.getPassword())
+				&& u.getRol().equalsIgnoreCase("mecanico")) {
+			
+			System.out.println("OPCION 1 (MECANICO): Registrar Nueva Reparacion");
+			System.out.println("OPCION 2 (MECANICO): Modificar Estado de la Reparacion");
+			System.out.println("OPCION 3 (MECANICO): Consultar Reparaciones");
+			System.out.println("OPCION 4 (MECANICO): Salir");
+			
+			opcion1 = escaner.nextInt();
+		     escaner.nextLine();
+			
+			switch (opcion1) {
+			case 1:
+				
+				
+				
+				MysqlDAOFactory df1 = new MysqlDAOFactory();
+				System.out.println("INTRODUCE LA DESCRIPCION");
+				String desc;
+				desc = escaner2.nextLine();
+				System.out.println("INTRODUCE EL COSTE");
+				int cost;
+				cost  = escaner2.nextInt();
+				escaner2.nextLine();
+				System.out.println("INTRODUCE EL ESTADO DE LA REPARACION");
+				String est;
+				est = escaner2.nextLine();
+				System.out.println("INTRODUCE LA MATRICULA DEL VEHICULO");
+				String matri;
+				matri = escaner2.nextLine();
+				
+				Reparaciones r1 = new Reparaciones(desc, cost, est, matri);
+				
+				df1.getReparacionDAOInterfaz().insert(r1);
+				break;
+				
+			case 2:
+				
+				MysqlDAOFactory df2 = new MysqlDAOFactory();
+				
+				break;
+			
+			case 3:
+				
+				MysqlDAOFactory df3 = new MysqlDAOFactory();
+				
+				df3.getReparacionDAOInterfaz().findall();
+				break;
+				
+			case 4:
+				
+				break;
+			}
+			
+
+		} else if (u.getDni().equals(dni) && PasswordUtils.verifyPassword(password, u.getPassword())
+				&& u.getRol().equalsIgnoreCase("admin")) {
+
+			
+			
+		} else {
+			
+			System.out.println("Usuario no valido, prueba otra vez");
+			
+		}
 
 	}
 }

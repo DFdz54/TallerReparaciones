@@ -14,10 +14,10 @@ public class Reparaciones {
 	private int usuarioId;
 	private String matriculaVehiculo;
 	
-	public Reparaciones(String descripcion, LocalDate fechaEntrada, double costeEstimado, String estado, String matriculaVehiculo) {
+	public Reparaciones(String descripcion, double costeEstimado, String estado, String matriculaVehiculo) {
 		super();
 		this.descripcion = descripcion;
-		this.fechaEntrada = fechaEntrada;
+		this.fechaEntrada = LocalDate.now();
 		this.costeEstimado = costeEstimado;
 		this.estado = estado;
 		this.matriculaVehiculo = matriculaVehiculo;
