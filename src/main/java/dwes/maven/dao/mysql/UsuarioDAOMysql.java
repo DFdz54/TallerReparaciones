@@ -104,8 +104,7 @@ public class UsuarioDAOMysql implements UsuarioDAOInterfaz {
 			case 1:
 				
 				
-				
-				MysqlDAOFactory df1 = new MysqlDAOFactory();
+				MysqlDAOFactory df1 = new MysqlDAOFactory(conexion);
 				System.out.println("INTRODUCE LA DESCRIPCION");
 				String desc;
 				desc = escaner2.nextLine();
@@ -126,14 +125,18 @@ public class UsuarioDAOMysql implements UsuarioDAOInterfaz {
 				break;
 				
 			case 2:
-				
-				MysqlDAOFactory df2 = new MysqlDAOFactory();
-				
+				MysqlDAOFactory df2 = new MysqlDAOFactory(conexion);
+				System.out.println("INTRODUCE EL ID DE LA REPARACION");
+				int idRep = escaner2.nextInt();
+				escaner2.nextLine();
+				System.out.println("INTRODUCE EL NUEVO ESTADO");
+				String nuevoEstado = escaner2.nextLine();
+			
 				break;
 			
 			case 3:
 				
-				MysqlDAOFactory df3 = new MysqlDAOFactory();
+				MysqlDAOFactory df3 = new MysqlDAOFactory(conexion);
 				
 				df3.getReparacionDAOInterfaz().findall();
 				break;
