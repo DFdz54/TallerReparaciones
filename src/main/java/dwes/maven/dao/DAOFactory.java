@@ -12,6 +12,6 @@ public interface DAOFactory {
 	public  ReparacionDAOInterfaz getReparacionDAOInterfaz();
 	public  UsuarioDAOInterfaz getUsuarioDAOInterfaz();
 
-	//comit random
+ //otro comentario random
 	
 }
