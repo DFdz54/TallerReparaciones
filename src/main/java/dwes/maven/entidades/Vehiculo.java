@@ -1,28 +1,68 @@
 package dwes.maven.entidades;
 
 public class Vehiculo {
-
-	
-
-	private int id_vehiculo;
-	private int sVehiculo = 1;
+	private int Id_vehiculo;
+	private static int siguienteId = 1;
 	private String matricula;
 	private String marca;
 	private String modelo;
 	private int cliente_id;
-	private String dniCliente;
 	
-	public Vehiculo(String matricula, String marca, String modelo, String dniCliente) {
-		super();
+	public Vehiculo(String matricula, String marca, String modelo, Cliente cliente) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.cliente_id = cliente_id;
-		this.dniCliente = dniCliente; // buscarClienteporDni.getId();
-		// Pedir el dni del cliente en el constructor para buscar su id emdiabte el dni (cambiar el dniCliente en un futuro)
-		this.id_vehiculo = sVehiculo;
-		sVehiculo++;
+		this.Id_vehiculo = siguienteId;
+		siguienteId++;
+		this.cliente_id= cliente.getId_cliente();	
 	}
-	
-	
+
+	public Vehiculo() {
+		this.Id_vehiculo = siguienteId;
+		siguienteId++;
+	}
+
+	public int getCliente_id() {
+		return cliente_id;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+
+	public int getId_vehiculo() {
+		return Id_vehiculo;
+	}
+
+	public void setId_vehiculo(int nuevoId) {
+		this.Id_vehiculo = nuevoId;
+		
+	}
+
+	public void setId_cliente(int nuevoId) {
+		this.cliente_id = nuevoId;
+		
+	}
+
 }
