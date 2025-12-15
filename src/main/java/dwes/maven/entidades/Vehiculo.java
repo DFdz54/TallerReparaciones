@@ -17,6 +17,14 @@ public class Vehiculo {
 		this.cliente_id= cliente.getId_cliente();	
 	}
 
+<<<<<<< HEAD
+	public int getId_vehiculo() {
+		return id_vehiculo;
+	}
+
+	public void setId_vehiculo(int id_vehiculo) {
+		this.id_vehiculo = id_vehiculo;
+=======
 	public Vehiculo() {
 		this.Id_vehiculo = siguienteId;
 		siguienteId++;
@@ -24,6 +32,7 @@ public class Vehiculo {
 
 	public int getCliente_id() {
 		return cliente_id;
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 	}
 
 	public String getMatricula() {
@@ -34,14 +43,47 @@ public class Vehiculo {
 		this.matricula = matricula;
 	}
 
+<<<<<<< HEAD
+	public String getMarca() {
+		return marca;
+	}
+
+=======
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
 
+<<<<<<< HEAD
+	public String getModelo() {
+		return modelo;
+	}
+
+=======
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
 
+<<<<<<< HEAD
+	public int getCliente_id() {
+		return cliente_id;
+	}
+
+	public void setCliente_id(int cliente_id) {
+		this.cliente_id = cliente_id;
+	}
+
+	public String getDniCliente() {
+		return dniCliente;
+	}
+
+	public void setDniCliente(String dniCliente) {
+		this.dniCliente = dniCliente;
+	}
+	
+	
+=======
 	public String getMarca() {
 		return marca;
 	}
@@ -65,4 +107,5 @@ public class Vehiculo {
 		
 	}
 
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 }

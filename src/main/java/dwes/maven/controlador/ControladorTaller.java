@@ -1,5 +1,11 @@
 package dwes.maven.controlador;
 
+<<<<<<< HEAD
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class ControladorTaller {
+=======
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -7,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 
 import dwes.maven.dao.DAOFactory;
 import dwes.maven.dao.interfaces.ClienteDAOInterfaz;

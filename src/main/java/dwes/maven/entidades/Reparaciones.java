@@ -13,12 +13,17 @@ public class Reparaciones {
 	private int usuario_id;
 	private int mecanico_id;
 	
+<<<<<<< HEAD
+	public Reparaciones(String descripcion, double costeEstimado, String estado, String matriculaVehiculo) {
+		super();
+=======
 
 	private int IdCliente;
 	
 	public Reparaciones(String descripcion,double costeEstimado, String estado,Vehiculo vehiculo) {
 		this.Id_reparacion = siguienteId;
 		siguienteId++;
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 		this.descripcion = descripcion;
 		this.fechaEntrada = LocalDate.now();
 		this.costeEstimado = costeEstimado;
@@ -99,6 +104,70 @@ public class Reparaciones {
 	public int getMecanicoId() {
 		
 		return mecanico_id;
+	}
+
+	public int getId_reparacion() {
+		return id_reparacion;
+	}
+
+	public void setId_reparacion(int id_reparacion) {
+		this.id_reparacion = id_reparacion;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public LocalDate getFechaEntrada() {
+		return fechaEntrada;
+	}
+
+	public void setFechaEntrada(LocalDate fechaEntrada) {
+		this.fechaEntrada = fechaEntrada;
+	}
+
+	public double getCosteEstimado() {
+		return costeEstimado;
+	}
+
+	public void setCosteEstimado(double costeEstimado) {
+		this.costeEstimado = costeEstimado;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public int getVehiculoId() {
+		return vehiculoId;
+	}
+
+	public void setVehiculoId(int vehiculoId) {
+		this.vehiculoId = vehiculoId;
+	}
+
+	public int getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(int usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+
+	public String getMatriculaVehiculo() {
+		return matriculaVehiculo;
+	}
+
+	public void setMatriculaVehiculo(String matriculaVehiculo) {
+		this.matriculaVehiculo = matriculaVehiculo;
 	}
 	
 	
