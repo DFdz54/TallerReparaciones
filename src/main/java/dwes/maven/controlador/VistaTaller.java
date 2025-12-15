@@ -36,8 +36,8 @@ public class VistaTaller {
     }
 
     private void menuInvitado() {
-        System.out.println("1. Ver reparaciones finalizadas (CU1)");
-        System.out.println("2. Login (CU2)");
+        System.out.println("1. Ver reparaciones finalizadas");
+        System.out.println("2. Login ");
         System.out.println("0. Salir");
         System.out.print("Opción: ");
         String op = sc.nextLine();
@@ -51,9 +51,9 @@ public class VistaTaller {
     }
 
     private void menuMecanico() {
-        System.out.println("1. Ver reparaciones finalizadas (CU1)");
-        System.out.println("2. Registrar reparación (CU3)");
-        System.out.println("3. Cambiar estado reparación (CU4)");
+        System.out.println("1. Ver reparaciones finalizadas");
+        System.out.println("2. Registrar reparación");
+        System.out.println("3. Cambiar estado reparación");
         System.out.println("4. Logout");
         System.out.println("0. Salir");
         System.out.print("Opción: ");
@@ -70,12 +70,12 @@ public class VistaTaller {
     }
 
     private void menuAdmin() {
-        System.out.println("1. Ver reparaciones finalizadas (CU1)");
-        System.out.println("2. Registrar reparación (CU3)");
-        System.out.println("3. Cambiar estado reparación (CU4)");
-        System.out.println("4. Gestionar clientes (CU5)");
-        System.out.println("5. Gestionar vehículos (CU5)");
-        System.out.println("6. Estadísticas (CU6)");
+        System.out.println("1. Ver reparaciones finalizadas");
+        System.out.println("2. Registrar reparación");
+        System.out.println("3. Cambiar estado reparación");
+        System.out.println("4. Gestionar clientes");
+        System.out.println("5. Gestionar vehículos");
+        System.out.println("6. Estadísticas");
         System.out.println("7. Logout");
         System.out.println("0. Salir");
         System.out.print("Opción: ");
