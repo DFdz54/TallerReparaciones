@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
+<<<<<<< HEAD
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -28,6 +29,21 @@ public class DBConnection {
 //			dataSource.setPassword("root");
 
 			// 1.2 Hacer con un FileInputStream
+=======
+
+import com.mysql.cj.jdbc.MysqlDataSource;
+
+
+public class DBConnection {
+	private static DBConnection Instance;
+	Connection conexionMySQL = null;
+
+	private  DBConnection() {
+		try {
+
+			MysqlDataSource dataSource = new MysqlDataSource();
+			
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 			Properties props = new Properties();
 			FileInputStream file = new FileInputStream("src\\main\\resources\\conexion.properties");
 			props.load(file);
@@ -37,11 +53,14 @@ public class DBConnection {
 			dataSource.setPassword(props.getProperty("password"));
 			file.close();
 
+<<<<<<< HEAD
 			// 1.3 Cargar manualmente el driver (NO ACONSEJADO)
 //			Class.forName("com.mysql.cj.jdbc.Driver");
 //			conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "root", "root");
 
 			// 1.4 Main
+=======
+>>>>>>> 7a9bc0e017aeaa2955764d54a87567c8972090f7
 			conexionMySQL = dataSource.getConnection();
 			System.out.println("> Conexión establecida correctamente");
 		} catch (SQLException | IOException e) {
